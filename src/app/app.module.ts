@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {TransactionsListComponent} from './transactions-list/transactions-list.component';
 import {TransactionCreateComponent} from './transaction-create/transaction-create.component';
 import {FormsModule} from '@angular/forms';
+import {DateValueAccessorModule} from 'angular-date-value-accessor';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    DateValueAccessorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
