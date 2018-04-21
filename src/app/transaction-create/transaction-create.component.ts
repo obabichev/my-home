@@ -9,7 +9,7 @@ import {Transaction} from '../transaction';
 export class TransactionCreateComponent implements OnInit {
 
   types: string[] = ['food', 'transport', 'apartment'];
-  model: Transaction = new Transaction(0, 1, this.types[0], new Date());
+  model: Transaction = new Transaction(0, 1, new Date(), this.types[0]);
   submitted = false;
 
   constructor() {
