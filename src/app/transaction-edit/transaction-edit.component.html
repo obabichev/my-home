@@ -1,0 +1,39 @@
+<div *ngIf="transaction" class="container">
+  <h1>Edit Book</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="updateBook(transaction._id)" #bookForm="ngForm">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number"
+                 class="form-control"
+                 id="amount"
+                 required
+                 [(ngModel)]="transaction.amount"
+                 name="amount">
+        </div>
+        <div class="form-group">
+          <label for="power">Type</label>
+          <select class="form-control"
+                  id="power"
+                  [(ngModel)]="transaction.type" name="type"
+                  required>
+            <option *ngFor="let type of types"
+                    [value]="type">{{type}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="amount">Date</label>
+          <input type="date"
+                 name="date"
+                 [(ngModel)]="transaction.date"
+                 useValueAsDate>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

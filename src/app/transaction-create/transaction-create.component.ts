@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class TransactionCreateComponent implements OnInit {
 
   types: string[] = ['food', 'transport', 'apartment'];
-  model: Transaction = new Transaction(0, 1, new Date(), this.types[0]);
+  model: Transaction = new Transaction(1, new Date(), this.types[0]);
   submitted = false;
 
   constructor(private http: HttpClient, private router: Router) {

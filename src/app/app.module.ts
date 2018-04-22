@@ -11,6 +11,7 @@ import {DateValueAccessorModule} from 'angular-date-value-accessor';
 import {TransactionComponent} from './transaction/transaction.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TransactionDetailsComponent} from './transaction-details/transaction-details.component';
+import { TransactionEditComponent } from './transaction-edit/transaction-edit.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +22,10 @@ const appRoutes: Routes = [
   {
     path: 'transaction-create',
     component: TransactionCreateComponent
+  },
+  {
+    path: 'transaction-edit/:id',
+    component: TransactionEditComponent
   },
   {
     path: 'transaction-details/:id',
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
     TransactionsListComponent,
     TransactionCreateComponent,
     TransactionComponent,
-    TransactionDetailsComponent
+    TransactionDetailsComponent,
+    TransactionEditComponent
   ],
   imports: [
     BrowserModule,
