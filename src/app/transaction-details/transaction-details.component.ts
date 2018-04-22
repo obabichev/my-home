@@ -10,7 +10,7 @@ import {Transaction} from '../transaction';
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  transaction: Transaction;
+  transaction: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
   }
