@@ -8,10 +8,12 @@ var book = require('./routes/book');
 var transaction = require('./routes/transaction');
 var app = express();
 
+var dataURL = process.env.MONGOLAB_URI;
+
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose
-  .connect('mongodb://localhost:27017/test', {promiseLibrary: require('bluebird')})
+  .connect(dataURL || 'mongodb://localhost:27017/test', {promiseLibrary: require('bluebird')})
   .then(() => console.log('connection succesful'))
   .catch((err) => console.error(err));
 
