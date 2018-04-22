@@ -8,7 +8,7 @@ var book = require('./routes/book');
 var transaction = require('./routes/transaction');
 var app = express();
 
-var dataURL = process.env.MONGOLAB_URI;
+var dataURL = process.env.MONGODB_URI;
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
