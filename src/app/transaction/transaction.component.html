@@ -18,7 +18,7 @@
     <tr *ngFor="let transaction of transactions">
       <td>{{ transaction.amount }}</td>
       <td>{{ transaction.type }}</td>
-      <td>Show Detail</td>
+      <td><a [routerLink]="['/transaction-details/' + transaction._id]">Show Detail</a></td>
     </tr>
     </tbody>
   </table>

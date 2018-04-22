@@ -1,3 +1,11 @@
-<p>
-  transaction-details works!
-</p>
+<div *ngIf="transaction" class="container">
+  <h1>Transaction</h1>
+  <dl class="list">
+    <dt>Amount</dt>
+    <dd>{{ transaction.amount }}</dd>
+    <dt>Type</dt>
+    <dd>{{ transaction.type }}</dd>
+    <dt>Date</dt>
+    <dd>{{ transaction.date }}</dd>
+  </dl>
+</div>
