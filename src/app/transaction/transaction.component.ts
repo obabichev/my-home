@@ -10,6 +10,8 @@ export class TransactionComponent implements OnInit {
 
   transactions: any;
 
+  displayedColumns = ['type', 'amount'];
+
   constructor(private http: HttpClient) {
   }
 

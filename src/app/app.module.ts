@@ -15,7 +15,7 @@ import {TransactionEditComponent} from './transaction-edit/transaction-edit.comp
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule, MatTableModule, MatPaginatorModule
 } from '@angular/material';
 
 const appRoutes: Routes = [
@@ -68,7 +68,9 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

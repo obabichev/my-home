@@ -1,25 +1,29 @@
-<h1>Create transaction!!!!!
-  <a [routerLink]="['/transaction-create']" class="btn btn-default btn-lg">
-    <button mat-raised-button color="primary">Create transaction</button>
-  </a>
-</h1>
+<h2>Transactions</h2>
 
-<div class="container">
-  <h1>Transactions List</h1>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Amount</th>
-      <th>Type</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let transaction of transactions">
-      <td>{{ transaction.amount }}</td>
-      <td>{{ transaction.type }}</td>
-      <td><a [routerLink]="['/transaction-details/' + transaction._id]">Show Detail</a></td>
-    </tr>
-    </tbody>
-  </table>
+<a [routerLink]="['/transaction-create']" class="btn btn-default btn-lg">
+  <button mat-raised-button color="primary">Create transaction</button>
+</a>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="transactions">
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+      <mat-cell *matCellDef="let transaction"> {{transaction.type}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef> Amount</mat-header-cell>
+      <mat-cell *matCellDef="let transaction"> {{transaction.amount}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
 </div>
+
