@@ -11,7 +11,12 @@ import {DateValueAccessorModule} from 'angular-date-value-accessor';
 import {TransactionComponent} from './transaction/transaction.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TransactionDetailsComponent} from './transaction-details/transaction-details.component';
-import { TransactionEditComponent } from './transaction-edit/transaction-edit.component';
+import {TransactionEditComponent} from './transaction-edit/transaction-edit.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
+  MatSelectModule
+} from '@angular/material';
 
 const appRoutes: Routes = [
   {
@@ -55,7 +60,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true} // <-- debugging purposes only
-    )
+    ),
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
