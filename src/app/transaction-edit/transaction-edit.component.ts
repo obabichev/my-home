@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {Transaction} from '../transaction';
+import {MatDatepickerInputEvent} from "@angular/material";
 
 @Component({
   selector: 'app-transaction-edit',
@@ -36,6 +36,10 @@ export class TransactionEditComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.transaction.date = event.value;
   }
 
 }
