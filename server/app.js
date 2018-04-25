@@ -5,6 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var transaction = require('./routes/transaction');
+var wallet = require('./routes/wallet');
 var app = express();
 
 var dataURL = process.env.MONGODB_URI;
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({'extended': 'false'}));
 
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/api/transaction', transaction);
+app.use('/api/wallet', wallet);
 app.use('/*', express.static(path.join(__dirname, '../dist')));
 
 // catch 404 and forward to error handler

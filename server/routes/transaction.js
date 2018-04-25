@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Transaction = require('../../models/Transaction.js');
+const Transaction = require('../models/Transaction.js');
+const Wallet = require('../models/Wallet.js');
 
-/* GET ALL BOOKS */
+/* GET ALL TRANSACTIONS */
 router.get('/', function (req, res, next) {
   Transaction.find(function (err, transactions) {
     if (err) return next(err);
@@ -11,7 +12,7 @@ router.get('/', function (req, res, next) {
   });
 });
 
-/* GET SINGLE BOOK BY ID */
+/* GET SINGLE TRANSACTION BY ID */
 router.get('/:id', function (req, res, next) {
   Transaction.findById(req.params.id, function (err, post) {
     if (err) return next(err);
@@ -19,15 +20,23 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-/* SAVE BOOK */
+/* SAVE TRANSACTION */
 router.post('/', function (req, res, next) {
   Transaction.create(req.body, function (err, post) {
     if (err) return next(err);
-    res.json(post);
+    Wallet.find({_id: post.walletId}).exec((err, wallets) => {
+      if (err) return next(err);
+      const wallet = wallets[0];
+      wallet.total += post.amount;
+      Wallet.findByIdAndUpdate(wallet._id, wallet, (err) => {
+        if (err) return next(err);
+        res.json(post);
+      });
+    });
   });
 });
 
-/* UPDATE BOOK */
+/* UPDATE TRANSACTION */
 router.put('/:id', function (req, res, next) {
   Transaction.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
@@ -35,7 +44,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-/* DELETE BOOK */
+/* DELETE TRANSACTION */
 router.delete('/:id', function (req, res, next) {
   Transaction.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
