@@ -16,7 +16,7 @@ export class TransactionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('/transaction').subscribe(data => {
+    this.http.get('/api/transaction').subscribe(data => {
       this.transactions = data;
     });
   }

@@ -24,7 +24,7 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   saveTransaction() {
-    this.http.post('/transaction', this.model)
+    this.http.post('/api/transaction', this.model)
       .subscribe(res => {
           const id = res['_id'];
           this.router.navigate(['/transaction-details', id]);

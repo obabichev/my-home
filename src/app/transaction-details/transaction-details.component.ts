@@ -20,13 +20,13 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   getTransactionDetail(id) {
-    this.http.get('/transaction/' + id).subscribe(data => {
+    this.http.get('/api/transaction/' + id).subscribe(data => {
       this.transaction = data;
     });
   }
 
   deleteTransaction(id) {
-    this.http.delete('/transaction/' + id)
+    this.http.delete('/api/transaction/' + id)
       .subscribe(res => {
           this.router.navigate(['/transactions']);
         }, (err) => {

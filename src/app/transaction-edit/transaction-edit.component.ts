@@ -21,14 +21,14 @@ export class TransactionEditComponent implements OnInit {
   }
 
   getTransaction(id) {
-    this.http.get('/transaction/' + id).subscribe(data => {
+    this.http.get('/api//transaction/' + id).subscribe(data => {
       this.transaction = data;
       this.transaction.date = new Date(this.transaction.date);
     });
   }
 
   updateBook(id) {
-    this.http.put('/transaction/' + id, this.transaction)
+    this.http.put('/api/transaction/' + id, this.transaction)
       .subscribe(res => {
           const id = res['_id'];
           this.router.navigate(['/transaction-details', id]);

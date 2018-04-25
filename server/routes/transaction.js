@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Transaction = require('../models/Transaction.js');
+const Transaction = require('../../models/Transaction.js');
 
 /* GET ALL BOOKS */
 router.get('/', function (req, res, next) {
