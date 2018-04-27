@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {WalletService} from '../service/wallet.service';
+import {TransactionService} from '../service/transaction.service';
+import {Transaction} from '../model/transaction';
+import {Wallet} from '../model/wallet';
 
 @Component({
   selector: 'app-transaction',
@@ -8,16 +11,22 @@ import {HttpClient} from '@angular/common/http';
 })
 export class TransactionComponent implements OnInit {
 
-  transactions: any;
+  transactions: Transaction[];
+  wallets: Wallet[];
 
   displayedColumns = ['type', 'amount', 'icon'];
 
-  constructor(private http: HttpClient) {
+  constructor(private walletService: WalletService,
+              private transactionService: TransactionService) {
   }
 
   ngOnInit() {
-    this.http.get('/api/transaction').subscribe(data => {
-      this.transactions = data;
+    this.transactionService.getAllTransactions().subscribe(transactions => {
+      this.transactions = transactions;
+    });
+
+    this.walletService.getAllWallets().subscribe(wallets => {
+      this.wallets = wallets;
     });
   }
 }

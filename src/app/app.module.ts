@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-
 import {AppComponent} from './app.component';
 import {TransactionCreateComponent} from './transaction-create/transaction-create.component';
 import {FormsModule} from '@angular/forms';
@@ -16,6 +15,11 @@ import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
   MatSelectModule, MatTableModule, MatPaginatorModule
 } from '@angular/material';
+import {WalletService} from './service/wallet.service';
+
+import 'rxjs/add/operator/map';
+import {TransactionService} from './service/transaction.service';
+
 
 const appRoutes: Routes = [
   {
@@ -70,7 +74,10 @@ const appRoutes: Routes = [
     MatTableModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    WalletService,
+    TransactionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

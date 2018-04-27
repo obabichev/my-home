@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from '../transaction';
+import {Transaction} from '../model/transaction';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {MatDatepickerInputEvent} from '@angular/material';
