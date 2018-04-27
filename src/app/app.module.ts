@@ -13,12 +13,13 @@ import {TransactionEditComponent} from './transaction-edit/transaction-edit.comp
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
-  MatSelectModule, MatTableModule, MatPaginatorModule
+  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule
 } from '@angular/material';
 import {WalletService} from './service/wallet.service';
 
 import 'rxjs/add/operator/map';
 import {TransactionService} from './service/transaction.service';
+import {WalletCardsComponent} from './wallet-cards/wallet-cards.component';
 
 
 const appRoutes: Routes = [
@@ -40,8 +41,12 @@ const appRoutes: Routes = [
     component: TransactionDetailsComponent
   },
   {
+    path: 'wallets',
+    component: WalletCardsComponent
+  },
+  {
     path: '',
-    redirectTo: '/transactions',
+    redirectTo: '/wallets',
     pathMatch: 'full'
   }
 ];
@@ -52,7 +57,8 @@ const appRoutes: Routes = [
     TransactionCreateComponent,
     TransactionComponent,
     TransactionDetailsComponent,
-    TransactionEditComponent
+    TransactionEditComponent,
+    WalletCardsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule
   ],
   providers: [
     WalletService,
