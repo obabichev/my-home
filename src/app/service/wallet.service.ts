@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Wallet} from '../model/wallet';
 import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs/Observable';
 
 const API_URL = environment.apiUrl;
 
@@ -13,8 +14,8 @@ export class WalletService {
   constructor(private http: HttpClient) {
   }
 
-  public getAllWallets() {
+  public getAllWallets(): Observable<Wallet[]> {
     return this.http.get(WALLET_URL)
-      .map(wallets => wallets.map(w => new Wallet(w)));
+      .map((wallets: Object[]) => wallets.map(w => new Wallet(w)));
   }
 }

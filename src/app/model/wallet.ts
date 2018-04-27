@@ -9,7 +9,8 @@ export class Wallet {
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
-    this.currency = new Classifier(values.currency);
+    // const currency: Classifier = new Classifier(values.currency);
+    // this.currency = currency;
   }
 
 }
