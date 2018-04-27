@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from '../model/transaction';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {MatDatepickerInputEvent} from '@angular/material';
+import {WalletService} from '../service/wallet.service';
+import {TransactionService} from '../service/transaction.service';
+import {Wallet} from '../model/wallet';
 
 @Component({
   selector: 'app-transaction-create',
@@ -12,10 +14,18 @@ import {MatDatepickerInputEvent} from '@angular/material';
 export class TransactionCreateComponent implements OnInit {
 
   types: string[] = ['food', 'transport', 'apartment'];
-  model: Transaction = new Transaction(1, new Date(), this.types[0]);
+  wallets: Wallet[] = [];
+
+  transaction: Transaction = new Transaction({
+    amount: 0,
+    date: new Date(),
+    type: this.types[0]
+  });
   submitted = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private router: Router,
+              private walletService: WalletService,
+              private transactionService: TransactionService) {
   }
 
   onSubmit() {
@@ -24,7 +34,7 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   saveTransaction() {
-    this.http.post('/api/transaction', this.model)
+    this.transactionService.createTransaction(this.transaction)
       .subscribe(res => {
           const id = res['_id'];
           this.router.navigate(['/transaction-details', id]);
@@ -35,9 +45,12 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.walletService.getAllWallets().subscribe(wallets => {
+      this.wallets = wallets;
+    });
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.model.date = event.value;
+    this.transaction.date = event.value;
   }
 }

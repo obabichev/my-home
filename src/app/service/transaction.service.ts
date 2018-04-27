@@ -17,4 +17,8 @@ export class TransactionService {
     return this.http.get(TRANSACTION_URL)
       .map(transactions => transactions.map(t => new Transaction(t)));
   }
+
+  public createTransaction(transaction: Transaction) {
+    return this.http.post(TRANSACTION_URL, transaction);
+  }
 }
