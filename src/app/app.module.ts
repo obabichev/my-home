@@ -22,7 +22,8 @@ import 'rxjs/add/operator/filter';
 import {TransactionService} from './service/transaction.service';
 import {WalletCardsComponent} from './wallet-cards/wallet-cards.component';
 import {WalletComponent} from './wallet/wallet.component';
-import { TransactionsTableComponent } from './transactions-table/transactions-table.component';
+import {TransactionsTableComponent} from './transactions-table/transactions-table.component';
+import {WalletCreateComponent} from './wallet-create/wallet-create.component';
 
 
 const appRoutes: Routes = [
@@ -52,6 +53,10 @@ const appRoutes: Routes = [
     component: WalletComponent
   },
   {
+    path: 'wallet-create',
+    component: WalletCreateComponent
+  },
+  {
     path: '',
     redirectTo: '/wallets',
     pathMatch: 'full'
@@ -67,7 +72,8 @@ const appRoutes: Routes = [
     TransactionEditComponent,
     WalletCardsComponent,
     WalletComponent,
-    TransactionsTableComponent
+    TransactionsTableComponent,
+    WalletCreateComponent
   ],
   imports: [
     BrowserModule,

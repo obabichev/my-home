@@ -18,4 +18,8 @@ export class WalletService {
     return this.http.get(WALLET_URL)
       .map((wallets: Object[]) => wallets.map(w => new Wallet(w)));
   }
+
+  public createWallet(wallet: Wallet) {
+    return this.http.post(WALLET_URL, wallet);
+  }
 }

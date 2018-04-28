@@ -1,0 +1,30 @@
+<div class="container wallet-create-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Create wallet</mat-card-title>
+    </mat-card-header>
+
+    <form #walletForm="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput placeholder="Name"
+                 [(ngModel)]="wallet.name"
+                 name="amount"
+                 type="string"
+                 required>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput placeholder="Description"
+                 [(ngModel)]="wallet.description"
+                 name="amount"
+                 type="string">
+        </mat-form-field>
+      </p>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="!walletForm.form.valid">Submit</button>
+    </form>
+  </mat-card>
+</div>
