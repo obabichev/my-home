@@ -1,5 +1,5 @@
-<div *ngIf="transactions" class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="transactions">
+<div *ngIf="dataSource" class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
@@ -22,7 +22,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   <mat-paginator #paginator
-                 [pageSize]="10"
+                 [pageSize]="5"
                  [pageSizeOptions]="[5, 10, 20]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
