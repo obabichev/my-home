@@ -10,7 +10,10 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button color="primary">Details</button>
+    <button [routerLink]="['/wallet/' + wallet._id]"
+            mat-button color="primary">
+      Details
+    </button>
   </mat-card-actions>
 </mat-card>
 
