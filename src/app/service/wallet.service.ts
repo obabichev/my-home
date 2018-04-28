@@ -22,4 +22,8 @@ export class WalletService {
   public createWallet(wallet: Wallet) {
     return this.http.post(WALLET_URL, wallet);
   }
+
+  public deleteWallet(id: string) {
+    return this.http.delete(`${WALLET_URL}/${id}`);
+  }
 }

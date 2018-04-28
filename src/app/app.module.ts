@@ -13,14 +13,14 @@ import {TransactionEditComponent} from './transaction-edit/transaction-edit.comp
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
-  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule
+  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatDialogModule
 } from '@angular/material';
 import {WalletService} from './service/wallet.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import {TransactionService} from './service/transaction.service';
-import {WalletCardsComponent} from './wallet-cards/wallet-cards.component';
+import {WalletDeleteDialogComponent, WalletCardsComponent} from './wallet-cards/wallet-cards.component';
 import {WalletComponent} from './wallet/wallet.component';
 import {TransactionsTableComponent} from './transactions-table/transactions-table.component';
 import {WalletCreateComponent} from './wallet-create/wallet-create.component';
@@ -73,7 +73,8 @@ const appRoutes: Routes = [
     WalletCardsComponent,
     WalletComponent,
     TransactionsTableComponent,
-    WalletCreateComponent
+    WalletCreateComponent,
+    WalletDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,13 +95,15 @@ const appRoutes: Routes = [
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [
     WalletService,
     TransactionService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [WalletDeleteDialogComponent]
 })
 export class AppModule {
 }
