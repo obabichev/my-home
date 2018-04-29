@@ -9,6 +9,12 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class TransactionsTableComponent implements OnInit {
 
+  dateFormatOptions: Object = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
   @Input()
   set transactions(transactions: Transaction[]) {
     this.dataSource = new MatTableDataSource<Transaction>(transactions);
@@ -18,7 +24,7 @@ export class TransactionsTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<Transaction> = null;
 
-  displayedColumns = ['type', 'amount', 'icon'];
+  displayedColumns = ['type', 'amount', 'date', 'icon'];
 
   constructor() {
   }

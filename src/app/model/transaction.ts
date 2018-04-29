@@ -8,5 +8,6 @@ export class Transaction {
 
   constructor(values: any = {}) {
     Object.assign(this, values);
+    this.date = new Date(values.date);
   }
 }
