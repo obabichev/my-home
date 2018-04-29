@@ -28,7 +28,7 @@ export class WalletCardsComponent implements OnInit {
   openDialog(id): void {
     const dialogRef = this.dialog.open(WalletDeleteDialogComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -47,7 +47,7 @@ export class WalletCardsComponent implements OnInit {
 })
 export class WalletDeleteDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {
+  constructor(public dialogRef: MatDialogRef<WalletDeleteDialogComponent>) {
   }
 
   onNoClick(): void {
