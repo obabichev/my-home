@@ -19,8 +19,9 @@ export class WalletService {
       .map((wallets: Object[]) => wallets.map(w => new Wallet(w)));
   }
 
-  public createWallet(wallet: Wallet) {
-    return this.http.post(WALLET_URL, wallet);
+  public createWallet(wallet: Wallet): Observable<Wallet> {
+    return this.http.post(WALLET_URL, wallet)
+      .map((createdWallet: any) => new Wallet(createdWallet));
   }
 
   public deleteWallet(id: string) {

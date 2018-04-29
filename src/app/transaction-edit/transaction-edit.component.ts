@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {MatDatepickerInputEvent} from "@angular/material";
+import {TransactionTypesService} from '../service/transaction-types.service';
 
 @Component({
   selector: 'app-transaction-edit',
@@ -11,13 +12,17 @@ import {MatDatepickerInputEvent} from "@angular/material";
 export class TransactionEditComponent implements OnInit {
 
   transaction: any;
-  types: string[] = ['food', 'transport', 'apartment'];
+  types: string[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: HttpClient,
+              private router: Router,
+              private route: ActivatedRoute,
+              private transactionTypesService: TransactionTypesService) {
   }
 
   ngOnInit() {
     this.getTransaction(this.route.snapshot.params['id']);
+    this.types = this.transactionTypesService.getTransactionTypes();
   }
 
   getTransaction(id) {

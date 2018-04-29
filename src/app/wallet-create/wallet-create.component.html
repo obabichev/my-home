@@ -13,6 +13,15 @@
                  type="string"
                  required>
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Type"
+                      [(ngModel)]="wallet.currency" name="currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+              {{currency.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </p>
 
       <p>

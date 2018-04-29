@@ -16,10 +16,11 @@ export class TransactionService {
 
   public getAllTransactions(): Observable<Transaction[]> {
     return this.http.get(TRANSACTION_URL)
-      .map((transactions: Object[]) => transactions.map(t => new Transaction(t)));
+      .map((transactions: any[]) => transactions.map(t => new Transaction(t)));
   }
 
-  public createTransaction(transaction: Transaction) {
-    return this.http.post(TRANSACTION_URL, transaction);
+  public createTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.http.post(TRANSACTION_URL, transaction)
+      .map((createdTransaction: any) => new Transaction(createdTransaction));
   }
 }

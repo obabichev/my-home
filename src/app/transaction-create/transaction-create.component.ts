@@ -5,6 +5,7 @@ import {MatDatepickerInputEvent} from '@angular/material';
 import {WalletService} from '../service/wallet.service';
 import {TransactionService} from '../service/transaction.service';
 import {Wallet} from '../model/wallet';
+import {TransactionTypesService} from '../service/transaction-types.service';
 
 @Component({
   selector: 'app-transaction-create',
@@ -13,20 +14,21 @@ import {Wallet} from '../model/wallet';
 })
 export class TransactionCreateComponent implements OnInit {
 
-  types: string[] = ['food', 'transport', 'apartment'];
+  types: string[] = [];
   wallets: Wallet[] = [];
 
   transaction: Transaction = new Transaction({
     amount: 0,
     date: new Date(),
-    type: this.types[0]
+    type: ''
   });
   submitted = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private walletService: WalletService,
-              private transactionService: TransactionService) {
+              private transactionService: TransactionService,
+              private transactionTypesService: TransactionTypesService) {
   }
 
   onSubmit() {
@@ -37,8 +39,8 @@ export class TransactionCreateComponent implements OnInit {
   saveTransaction() {
     this.transactionService.createTransaction(this.transaction)
       .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/transaction-details', id]);
+          const id = res['walletId'];
+          this.router.navigate(['/wallet', id]);
         }, (err) => {
           console.log(err);
         }
@@ -53,6 +55,8 @@ export class TransactionCreateComponent implements OnInit {
     this.walletService.getAllWallets().subscribe(wallets => {
       this.wallets = wallets;
     });
+    this.types = this.transactionTypesService.getTransactionTypes();
+    this.transaction.type = this.types[0];
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {

@@ -3,6 +3,7 @@ import {Wallet} from '../model/wallet';
 import {Classifier} from '../model/classifier';
 import {WalletService} from '../service/wallet.service';
 import {Router} from '@angular/router';
+import {CurrenciesService} from '../service/currencies.service';
 
 @Component({
   selector: 'app-wallet-create',
@@ -13,16 +14,19 @@ export class WalletCreateComponent implements OnInit {
 
   wallet: Wallet = new Wallet({
     total: 0,
-    currency: new Classifier({
-      code: 'RUR',
-      value: 'RUR'
-    })
+    currency: null
   });
 
-  constructor(private walletService: WalletService, private router: Router) {
+  currencies: Classifier[] = [];
+
+  constructor(private walletService: WalletService,
+              private router: Router,
+              private currenciesService: CurrenciesService) {
   }
 
   ngOnInit() {
+    this.currencies = this.currenciesService.getCurrencies();
+    this.wallet.currency = this.currencies[0];
   }
 
   onSubmit() {

@@ -24,6 +24,8 @@ import {WalletDeleteDialogComponent, WalletCardsComponent} from './wallet-cards/
 import {WalletComponent} from './wallet/wallet.component';
 import {TransactionsTableComponent} from './transactions-table/transactions-table.component';
 import {WalletCreateComponent} from './wallet-create/wallet-create.component';
+import { CurrenciesService } from './service/currencies.service';
+import { TransactionTypesService } from './service/transaction-types.service';
 
 
 const appRoutes: Routes = [
@@ -100,7 +102,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     WalletService,
-    TransactionService
+    TransactionService,
+    CurrenciesService,
+    TransactionTypesService
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]
