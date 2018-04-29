@@ -12,6 +12,7 @@ import {filter, map} from 'rxjs/operators';
 export class WalletComponent implements OnInit {
 
   transactions: Transaction[] = [];
+  walletId: string;
 
   constructor(private route: ActivatedRoute,
               private transactionService: TransactionService) {
@@ -19,6 +20,7 @@ export class WalletComponent implements OnInit {
 
   ngOnInit() {
     const walletId: string = this.route.snapshot.params['id'];
+    this.walletId = walletId;
     this.getTransactions(walletId);
   }
 

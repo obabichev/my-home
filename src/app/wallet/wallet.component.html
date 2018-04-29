@@ -1,1 +1,4 @@
 <app-transactions-table [transactions]="transactions"></app-transactions-table>
+<a [routerLink]="['/transaction-create', {walletId: walletId}]" class="btn btn-default btn-lg">
+  <button mat-raised-button color="primary">Create transaction</button>
+</a>

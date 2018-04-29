@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from '../model/transaction';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {WalletService} from '../service/wallet.service';
 import {TransactionService} from '../service/transaction.service';
@@ -24,6 +24,7 @@ export class TransactionCreateComponent implements OnInit {
   submitted = false;
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private walletService: WalletService,
               private transactionService: TransactionService) {
   }
@@ -45,6 +46,10 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    const walletId: string = this.route.snapshot.params['walletId'];
+    if (walletId) {
+      this.transaction.walletId = walletId;
+    }
     this.walletService.getAllWallets().subscribe(wallets => {
       this.wallets = wallets;
     });
