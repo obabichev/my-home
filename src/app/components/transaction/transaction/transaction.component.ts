@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {WalletService} from '../service/wallet.service';
-import {TransactionService} from '../service/transaction.service';
-import {Transaction} from '../model/transaction';
-import {Wallet} from '../model/wallet';
+import {WalletService} from '../../../service/wallet.service';
+import {TransactionService} from '../../../service/transaction.service';
+import {Transaction} from '../../../model/transaction';
+import {Wallet} from '../../../model/wallet';
 
 @Component({
   selector: 'app-transaction',

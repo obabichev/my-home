@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {WalletService} from '../service/wallet.service';
-import {Wallet} from '../model/wallet';
+import {WalletService} from '../../../service/wallet.service';
+import {Wallet} from '../../../model/wallet';
 import {MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({

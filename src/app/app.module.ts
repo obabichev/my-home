@@ -3,13 +3,13 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
-import {TransactionCreateComponent} from './transaction-create/transaction-create.component';
+import {TransactionCreateComponent} from './components/transaction/transaction-create/transaction-create.component';
 import {FormsModule} from '@angular/forms';
 import {DateValueAccessorModule} from 'angular-date-value-accessor';
-import {TransactionComponent} from './transaction/transaction.component';
+import {TransactionComponent} from './components/transaction/transaction/transaction.component';
 import {HttpClientModule} from '@angular/common/http';
-import {TransactionDetailsComponent} from './transaction-details/transaction-details.component';
-import {TransactionEditComponent} from './transaction-edit/transaction-edit.component';
+import {TransactionDetailsComponent} from './components/transaction/transaction-details/transaction-details.component';
+import {TransactionEditComponent} from './components/transaction/transaction-edit/transaction-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
@@ -20,10 +20,10 @@ import {WalletService} from './service/wallet.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import {TransactionService} from './service/transaction.service';
-import {WalletDeleteDialogComponent, WalletCardsComponent} from './wallet-cards/wallet-cards.component';
-import {WalletComponent} from './wallet/wallet.component';
-import {TransactionsTableComponent} from './transactions-table/transactions-table.component';
-import {WalletCreateComponent} from './wallet-create/wallet-create.component';
+import {WalletDeleteDialogComponent, WalletCardsComponent} from './components/wallet/wallet-cards/wallet-cards.component';
+import {WalletComponent} from './components/wallet/wallet/wallet.component';
+import {TransactionsTableComponent} from './components/transaction/transactions-table/transactions-table.component';
+import {WalletCreateComponent} from './components/wallet/wallet-create/wallet-create.component';
 import { CurrenciesService } from './service/currencies.service';
 import { TransactionTypesService } from './service/transaction-types.service';
 

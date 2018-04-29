@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Transaction} from '../model/transaction';
+import {Transaction} from '../../../model/transaction';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {MatDatepickerInputEvent} from "@angular/material";
-import {TransactionTypesService} from '../service/transaction-types.service';
+import {TransactionTypesService} from '../../../service/transaction-types.service';
 
 @Component({
   selector: 'app-transaction-edit',

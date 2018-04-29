@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Transaction} from '../model/transaction';
-import {TransactionService} from '../service/transaction.service';
+import {Transaction} from '../../../model/transaction';
+import {TransactionService} from '../../../service/transaction.service';
 import {filter, map} from 'rxjs/operators';
 
 @Component({

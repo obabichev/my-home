@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Wallet} from '../model/wallet';
-import {Classifier} from '../model/classifier';
-import {WalletService} from '../service/wallet.service';
+import {Wallet} from '../../../model/wallet';
+import {Classifier} from '../../../model/classifier';
+import {WalletService} from '../../../service/wallet.service';
 import {Router} from '@angular/router';
-import {CurrenciesService} from '../service/currencies.service';
+import {CurrenciesService} from '../../../service/currencies.service';
 
 @Component({
   selector: 'app-wallet-create',

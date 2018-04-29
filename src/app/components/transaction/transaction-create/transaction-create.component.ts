@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Transaction} from '../model/transaction';
+import {Transaction} from '../../../model/transaction';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material';
-import {WalletService} from '../service/wallet.service';
-import {TransactionService} from '../service/transaction.service';
-import {Wallet} from '../model/wallet';
-import {TransactionTypesService} from '../service/transaction-types.service';
+import {WalletService} from '../../../service/wallet.service';
+import {TransactionService} from '../../../service/transaction.service';
+import {Wallet} from '../../../model/wallet';
+import {TransactionTypesService} from '../../../service/transaction-types.service';
 
 @Component({
   selector: 'app-transaction-create',
