@@ -20,12 +20,20 @@ import {WalletService} from './service/wallet.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import {TransactionService} from './service/transaction.service';
-import {WalletDeleteDialogComponent, WalletCardsComponent} from './components/wallet/wallet-cards/wallet-cards.component';
+import {
+  WalletDeleteDialogComponent,
+  WalletCardsComponent
+} from './components/wallet/wallet-cards/wallet-cards.component';
 import {WalletComponent} from './components/wallet/wallet/wallet.component';
 import {TransactionsTableComponent} from './components/transaction/transactions-table/transactions-table.component';
 import {WalletCreateComponent} from './components/wallet/wallet-create/wallet-create.component';
-import { CurrenciesService } from './service/currencies.service';
-import { TransactionTypesService } from './service/transaction-types.service';
+import {CurrenciesService} from './service/currencies.service';
+import {TransactionTypesService} from './service/transaction-types.service';
+import {AuthenticationService} from './service/authentication.service';
+import {RegisterComponent} from './components/auth/register/register.component';
+import {LoginComponent} from './components/auth/login/login.component';
+import {ProfileComponent} from './components/auth/profile/profile.component';
+import {AuthGuardService} from './service/auth-guard.service';
 
 
 const appRoutes: Routes = [
@@ -59,6 +67,19 @@ const appRoutes: Routes = [
     component: WalletCreateComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: '',
     redirectTo: '/wallets',
     pathMatch: 'full'
@@ -76,7 +97,10 @@ const appRoutes: Routes = [
     WalletComponent,
     TransactionsTableComponent,
     WalletCreateComponent,
-    WalletDeleteDialogComponent
+    WalletDeleteDialogComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +128,9 @@ const appRoutes: Routes = [
     WalletService,
     TransactionService,
     CurrenciesService,
-    TransactionTypesService
+    TransactionTypesService,
+    AuthenticationService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]

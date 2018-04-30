@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import 'hammerjs';
+import {AuthenticationService} from './service/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import 'hammerjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(public authenticationService: AuthenticationService) {
+  }
 }

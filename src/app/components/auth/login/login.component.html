@@ -1,0 +1,33 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Create account</mat-card-title>
+  </mat-card-header>
+
+
+  <form class="example-container" #transactionForm="ngForm"
+        (ngSubmit)="login()">
+    <p>
+      <mat-form-field [hideRequiredMarker]="false">
+        <input matInput placeholder="Email"
+               [(ngModel)]="credentials.email"
+               name="email"
+               type="email"
+               required>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field [hideRequiredMarker]="false">
+        <input matInput placeholder="Password"
+               [(ngModel)]="credentials.password"
+               name="password"
+               type="password"
+               required>
+      </mat-form-field>
+    </p>
+
+    <button type="submit" mat-raised-button color="primary"
+            [disabled]="!transactionForm.form.valid">Sign in
+    </button>
+  </form>
+</mat-card>

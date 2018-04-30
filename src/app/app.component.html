@@ -1,1 +1,13 @@
+<ul class="nav navbar-nav navbar-right">
+  <li *ngIf="!authenticationService.isLoggedIn()">
+    <a [routerLink]="['login']">Sign in</a>
+  </li>
+  <li *ngIf="authenticationService.isLoggedIn()">
+    <a [routerLink]="['profile']">{{ authenticationService.getUserDetails()?.name }}</a>
+  </li>
+  <li *ngIf="authenticationService.isLoggedIn()">
+    <a (click)="authenticationService.logout()">Logout</a>
+  </li>
+</ul>
+
 <router-outlet></router-outlet>
