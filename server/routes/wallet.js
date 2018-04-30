@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Wallet = require('../models/Wallet.js');
+const authValidator = require('../authValidator');
 
 /* GET ALL WALLETS */
-router.get('/', function (req, res, next) {
+router.get('/', authValidator, function (req, res, next) {
   Wallet.find(function (err, transactions) {
     if (err) return next(err);
     res.json(transactions);
@@ -12,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 /* GET SINGLE WALLET BY ID */
-router.get('/:id', function (req, res, next) {
+router.get('/:id', authValidator, function (req, res, next) {
   Wallet.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -20,7 +21,7 @@ router.get('/:id', function (req, res, next) {
 });
 
 /* SAVE WALLET */
-router.post('/', function (req, res, next) {
+router.post('/', authValidator, function (req, res, next) {
   Wallet.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -28,7 +29,7 @@ router.post('/', function (req, res, next) {
 });
 
 /* UPDATE WALLET */
-router.put('/:id', function (req, res, next) {
+router.put('/:id', authValidator, function (req, res, next) {
   Wallet.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -36,7 +37,7 @@ router.put('/:id', function (req, res, next) {
 });
 
 /* DELETE WALLET */
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', authValidator, function (req, res, next) {
   Wallet.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);

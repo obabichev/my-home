@@ -3,11 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const User = require('../models/User.js');
 
-const jwt = require('express-jwt');
-const auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
-});
+const authValidator = require('../authValidator');
 
 router.post('/', (req, res, next) => {
   if (!req.body.email || !req.body.password) {
@@ -40,7 +36,7 @@ router.post('/', (req, res, next) => {
   })(req, res);
 });
 
-router.get('/profile', auth, (req, res, next) => {
+router.get('/profile', authValidator, (req, res, next) => {
 // If no user ID exists in the JWT return a 401
   if (!req.payload._id) {
     res.status(401).json({

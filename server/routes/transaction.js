@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Transaction = require('../models/Transaction.js');
 const Wallet = require('../models/Wallet.js');
+const authValidator = require('../authValidator');
 
 /* GET ALL TRANSACTIONS */
 router.get('/', function (req, res, next) {
@@ -13,7 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 /* GET SINGLE TRANSACTION BY ID */
-router.get('/:id', function (req, res, next) {
+router.get('/:id', authValidator, function (req, res, next) {
   Transaction.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -21,7 +22,7 @@ router.get('/:id', function (req, res, next) {
 });
 
 /* SAVE TRANSACTION */
-router.post('/', function (req, res, next) {
+router.post('/', authValidator, function (req, res, next) {
   Transaction.create(req.body, function (err, post) {
     if (err) return next(err);
     Wallet.find({_id: post.walletId}).exec((err, wallets) => {
@@ -37,7 +38,7 @@ router.post('/', function (req, res, next) {
 });
 
 /* UPDATE TRANSACTION */
-router.put('/:id', function (req, res, next) {
+router.put('/:id', authValidator, function (req, res, next) {
   Transaction.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -45,7 +46,7 @@ router.put('/:id', function (req, res, next) {
 });
 
 /* DELETE TRANSACTION */
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', authValidator, function (req, res, next) {
   Transaction.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
