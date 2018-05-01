@@ -19,6 +19,11 @@ export class WalletService {
       .map((wallets: Object[]) => wallets.map(w => new Wallet(w)));
   }
 
+  public getWalletById(id: string): Observable<Wallet> {
+    return this.rest.rget(`${WALLET_URL}/${id}`)
+      .map((wallet: any) => new Wallet(wallet));
+  }
+
   public createWallet(wallet: Wallet): Observable<Wallet> {
     return this.rest.rpost(WALLET_URL, wallet)
       .map((createdWallet: any) => new Wallet(createdWallet));

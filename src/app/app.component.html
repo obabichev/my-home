@@ -1,13 +1,21 @@
-<ul class="nav navbar-nav navbar-right">
-  <li *ngIf="!authenticationService.isLoggedIn()">
-    <a [routerLink]="['login']">Sign in</a>
-  </li>
-  <li *ngIf="authenticationService.isLoggedIn()">
-    <a [routerLink]="['profile']">{{ authenticationService.getUserDetails()?.name }}</a>
-  </li>
-  <li *ngIf="authenticationService.isLoggedIn()">
-    <a (click)="authenticationService.logout()">Logout</a>
-  </li>
-</ul>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span *ngIf="authenticationService.isLoggedIn()" class="menu-spacer">
+      <button mat-button color="white" [routerLink]="['wallets']">Wallets</button>
+    </span>
+    <span *ngIf="authenticationService.isLoggedIn()">
+      {{ authenticationService.getUserDetails()?.name }}
+    </span>
+    <span *ngIf="!authenticationService.isLoggedIn()">
+      <button mat-button color="white" [routerLink]="['login']">Login</button>
+    </span>
+    <span *ngIf="!authenticationService.isLoggedIn()">
+      <button mat-button color="white" [routerLink]="['register']">Register</button>
+    </span>
+    <span *ngIf="authenticationService.isLoggedIn()">
+      <button mat-button color="white" (click)="authenticationService.logout()">Logout</button>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

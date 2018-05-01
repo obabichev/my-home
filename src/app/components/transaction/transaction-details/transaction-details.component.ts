@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {TransactionService} from '../../../service/transaction.service';
+import {Transaction} from '../../../model/transaction';
 
 @Component({
   selector: 'app-transaction-details',
@@ -9,9 +10,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  transaction: any;
+  transaction: Transaction;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private transactionService: TransactionService) {
   }
 
   ngOnInit() {
@@ -19,15 +22,16 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   getTransactionDetail(id) {
-    this.http.get('/api/transaction/' + id).subscribe(data => {
-      this.transaction = data;
-    });
+    this.transactionService.getTransactionDetails(id)
+      .subscribe((transaction: Transaction) => {
+        this.transaction = transaction;
+      });
   }
 
   deleteTransaction(id) {
-    this.http.delete('/api/transaction/' + id)
+    this.transactionService.deleteTransaction(id)
       .subscribe(res => {
-          this.router.navigate(['/transactions']);
+          this.router.navigate(['wallet', this.transaction.walletId]);
         }, (err) => {
           console.log(err);
         }

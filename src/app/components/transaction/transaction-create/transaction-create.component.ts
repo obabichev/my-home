@@ -18,7 +18,7 @@ export class TransactionCreateComponent implements OnInit {
   wallets: Wallet[] = [];
 
   transaction: Transaction = new Transaction({
-    amount: 0,
+    amount: null,
     date: new Date(),
     type: ''
   });

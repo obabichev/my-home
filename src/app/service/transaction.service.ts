@@ -19,6 +19,15 @@ export class TransactionService {
       .map((transactions: any[]) => transactions.map(t => new Transaction(t)));
   }
 
+  public getTransactionDetails(id: string): Observable<Transaction> {
+    return this.rest.rget(`${TRANSACTION_URL}/${id}`)
+      .map((transaction: any) => new Transaction(transaction));
+  }
+
+  public deleteTransaction(id: string) {
+    return this.rest.rdelete(`${TRANSACTION_URL}/${id}`);
+  }
+
   public createTransaction(transaction: Transaction): Observable<Transaction> {
     return this.rest.rpost(TRANSACTION_URL, transaction)
       .map((createdTransaction: any) => new Transaction(createdTransaction));

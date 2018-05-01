@@ -13,7 +13,7 @@ import {TransactionEditComponent} from './components/transaction/transaction-edi
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
-  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatDialogModule
+  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatDialogModule, MatToolbarModule
 } from '@angular/material';
 import {WalletService} from './service/wallet.service';
 
@@ -57,7 +57,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'wallets',
-    component: WalletCardsComponent
+    component: WalletCardsComponent,
+    data: {title: 'WALLLLLETS'}
   },
   {
     path: 'wallet/:id',
@@ -123,7 +124,8 @@ const appRoutes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule
   ],
   providers: [
     WalletService,

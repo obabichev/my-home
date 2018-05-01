@@ -47,9 +47,21 @@ router.put('/:id', authValidator, function (req, res, next) {
 
 /* DELETE TRANSACTION */
 router.delete('/:id', authValidator, function (req, res, next) {
-  Transaction.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Transaction.findOne({_id: req.params.id}).exec((err, transaction) => {
     if (err) return next(err);
-    res.json(post);
+    const amount = transaction.amount;
+    const walletId = transaction.walletId;
+    Wallet.findOne({_id: walletId}).exec((err, wallet) => {
+      if (err) return next(err);
+      wallet.total -= amount;
+      Wallet.findByIdAndUpdate(wallet._id, wallet, (err) => {
+        if (err) return next(err);
+        Transaction.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+          if (err) return next(err);
+          res.json(post);
+        });
+      });
+    });
   });
 });
 
