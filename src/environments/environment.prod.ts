@@ -2,5 +2,5 @@ export const environment = {
   production: true,
 
   // URL of development API
-  apiUrl: 'https://localhost:3000/api'
+  apiUrl: 'https://obabichev-my-home.herokuapp.com/api'
 };
