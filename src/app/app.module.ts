@@ -57,8 +57,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'wallets',
-    component: WalletCardsComponent,
-    data: {title: 'WALLLLLETS'}
+    component: WalletCardsComponent
   },
   {
     path: 'wallet/:id',
