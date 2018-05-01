@@ -34,6 +34,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {ProfileComponent} from './components/auth/profile/profile.component';
 import {AuthGuardService} from './service/auth-guard.service';
+import {RestService} from './service/rest.service';
 
 
 const appRoutes: Routes = [
@@ -130,7 +131,8 @@ const appRoutes: Routes = [
     CurrenciesService,
     TransactionTypesService,
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    RestService
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]

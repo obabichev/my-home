@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const WalletSchema = new mongoose.Schema({
   name: String,
+  userId: String,
   description: String,
   currency: {
     code: String,

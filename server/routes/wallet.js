@@ -6,14 +6,18 @@ const authValidator = require('../authValidator');
 
 /* GET ALL WALLETS */
 router.get('/', authValidator, function (req, res, next) {
-  Wallet.find(function (err, transactions) {
-    if (err) return next(err);
-    res.json(transactions);
-  });
+  const userId = req.payload._id;
+  Wallet.find()
+    .where('userId').equals(userId)
+    .exec(function (err, transactions) {
+      if (err) return next(err);
+      res.json(transactions);
+    });
 });
 
 /* GET SINGLE WALLET BY ID */
 router.get('/:id', authValidator, function (req, res, next) {
+
   Wallet.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -22,6 +26,8 @@ router.get('/:id', authValidator, function (req, res, next) {
 
 /* SAVE WALLET */
 router.post('/', authValidator, function (req, res, next) {
+  const userId = req.payload._id;
+  req.body.userId = userId;
   Wallet.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
