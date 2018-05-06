@@ -12,6 +12,10 @@ const app = express();
 
 const dataURL = process.env.MONGODB_URI;
 
+if (dataURL) {
+  console.log('dataUrl', dataURL);
+}
+
 const mongoose = require('mongoose');
 const passport = require('passport');
 require('./config/passport');

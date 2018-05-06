@@ -5,12 +5,13 @@ const Transaction = require('../models/Transaction.js');
 const Wallet = require('../models/Wallet.js');
 const authValidator = require('../authValidator');
 
+const TransactionController = require('../controllers/TransactionController');
+
 /* GET ALL TRANSACTIONS */
 router.get('/', function (req, res, next) {
-  Transaction.find(function (err, transactions) {
-    if (err) return next(err);
-    res.json(transactions);
-  });
+  Transaction.find()
+    .then(transactions => res.json(transactions))
+    .catch(err => next(err));
 });
 
 /* GET SINGLE TRANSACTION BY ID */
@@ -23,46 +24,23 @@ router.get('/:id', authValidator, function (req, res, next) {
 
 /* SAVE TRANSACTION */
 router.post('/', authValidator, function (req, res, next) {
-  Transaction.create(req.body, function (err, post) {
-    if (err) return next(err);
-    Wallet.find({_id: post.walletId}).exec((err, wallets) => {
-      if (err) return next(err);
-      const wallet = wallets[0];
-      wallet.total += post.amount;
-      Wallet.findByIdAndUpdate(wallet._id, wallet, (err) => {
-        if (err) return next(err);
-        res.json(post);
-      });
-    });
-  });
+  return TransactionController.createTransaction(req.body)
+    .then(transaction => res.json(transaction))
+    .catch(err => next(err));
 });
 
 /* UPDATE TRANSACTION */
-router.put('/:id', authValidator, function (req, res, next) {
-  Transaction.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
+router.put('/', authValidator, function (req, res, next) {
+  return TransactionController.updateTransaction(req.body)
+    .then(transaction => res.json(transaction))
+    .catch(err => next(err));
 });
 
 /* DELETE TRANSACTION */
 router.delete('/:id', authValidator, function (req, res, next) {
-  Transaction.findOne({_id: req.params.id}).exec((err, transaction) => {
-    if (err) return next(err);
-    const amount = transaction.amount;
-    const walletId = transaction.walletId;
-    Wallet.findOne({_id: walletId}).exec((err, wallet) => {
-      if (err) return next(err);
-      wallet.total -= amount;
-      Wallet.findByIdAndUpdate(wallet._id, wallet, (err) => {
-        if (err) return next(err);
-        Transaction.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-          if (err) return next(err);
-          res.json(post);
-        });
-      });
-    });
-  });
+  return TransactionController.deleteTransaction(req.params.id)
+    .then(result => res.json(result))
+    .catch(err => next(err));
 });
 
 module.exports = router;

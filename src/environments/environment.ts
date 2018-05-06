@@ -7,5 +7,5 @@ export const environment = {
   production: false,
 
   // URL of production API
-  apiUrl: 'https://obabichev-my-home.herokuapp.com/api'
+  apiUrl: 'http://localhost:3000/api'
 };
