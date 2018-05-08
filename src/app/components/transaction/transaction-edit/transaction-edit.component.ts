@@ -16,8 +16,7 @@ export class TransactionEditComponent implements OnInit {
   transaction: Transaction = null;
   types: string[] = [];
 
-  constructor(private http: HttpClient,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
               private transactionTypesService: TransactionTypesService,
               private transactionService: TransactionService) {

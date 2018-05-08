@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {DateValueAccessorModule} from 'angular-date-value-accessor';
 import {TransactionComponent} from './components/transaction/transaction/transaction.component';
 import {HttpClientModule} from '@angular/common/http';
-import {TransactionDetailsComponent} from './components/transaction/transaction-details/transaction-details.component';
 import {TransactionEditComponent} from './components/transaction/transaction-edit/transaction-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -52,10 +51,6 @@ const appRoutes: Routes = [
     component: TransactionEditComponent
   },
   {
-    path: 'transaction-details/:id',
-    component: TransactionDetailsComponent
-  },
-  {
     path: 'wallets',
     component: WalletCardsComponent
   },
@@ -92,7 +87,6 @@ const appRoutes: Routes = [
     AppComponent,
     TransactionCreateComponent,
     TransactionComponent,
-    TransactionDetailsComponent,
     TransactionEditComponent,
     WalletCardsComponent,
     WalletComponent,
