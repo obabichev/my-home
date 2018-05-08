@@ -32,4 +32,9 @@ export class TransactionService {
     return this.rest.rpost(TRANSACTION_URL, transaction)
       .map((createdTransaction: any) => new Transaction(createdTransaction));
   }
+
+  public updateTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.rest.rput(TRANSACTION_URL, transaction)
+      .map((updatedTransaction: Transaction) => new Transaction(updatedTransaction));
+  }
 }

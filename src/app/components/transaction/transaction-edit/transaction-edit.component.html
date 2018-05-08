@@ -6,7 +6,7 @@
     </mat-card-header>
 
     <form class="example-container" #transactionForm="ngForm"
-          (ngSubmit)="updateBook(transaction._id)">
+          (ngSubmit)="onSubmit()">
 
       <p>
         <mat-form-field [hideRequiredMarker]="false">
@@ -18,7 +18,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Select"
+          <mat-select placeholder="Type"
                       [(ngModel)]="transaction.type" name="type">
             <mat-option *ngFor="let type of types" [value]="type">
               {{type}}
@@ -37,8 +37,16 @@
         </mat-form-field>
       </p>
 
+      <p>
+        <mat-form-field>
+        <textarea matInput placeholder="Description"
+                  name="description"
+                  [(ngModel)]="transaction.description"></textarea>
+        </mat-form-field>
+      </p>
 
       <button type="submit" mat-raised-button color="primary" [disabled]="!transactionForm.form.valid">Update</button>
+      <button mat-button color="warn" (click)="deleteTransaction(transaction._id)">Delete</button>
     </form>
   </mat-card>
 </div>

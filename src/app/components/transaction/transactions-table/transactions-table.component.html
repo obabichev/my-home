@@ -1,9 +1,10 @@
 <div *ngIf="dataSource" class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
-
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-      <mat-cell *matCellDef="let transaction"> {{transaction.type}}</mat-cell>
+      <mat-cell *matCellDef="let transaction">
+        {{transaction.type}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="amount">
@@ -20,7 +21,7 @@
     <ng-container matColumnDef="icon">
       <mat-header-cell *matHeaderCellDef> Actions</mat-header-cell>
       <mat-cell *matCellDef="let transaction">
-        <a mat-button [routerLink]="['/transaction-details/' + transaction._id]">Details</a>
+        <a mat-button color="primary" [routerLink]="['/transaction-edit/' + transaction._id]">Details</a>
       </mat-cell>
     </ng-container>
 

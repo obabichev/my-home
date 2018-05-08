@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {MatDatepickerInputEvent} from "@angular/material";
 import {TransactionTypesService} from '../../../service/transaction-types.service';
+import {TransactionService} from '../../../service/transaction.service';
+import {Transaction} from '../../../model/transaction';
 
 @Component({
   selector: 'app-transaction-edit',
@@ -11,13 +13,14 @@ import {TransactionTypesService} from '../../../service/transaction-types.servic
 })
 export class TransactionEditComponent implements OnInit {
 
-  transaction: any;
+  transaction: Transaction = null;
   types: string[] = [];
 
   constructor(private http: HttpClient,
               private router: Router,
               private route: ActivatedRoute,
-              private transactionTypesService: TransactionTypesService) {
+              private transactionTypesService: TransactionTypesService,
+              private transactionService: TransactionService) {
   }
 
   ngOnInit() {
@@ -26,25 +29,33 @@ export class TransactionEditComponent implements OnInit {
   }
 
   getTransaction(id) {
-    this.http.get('/api//transaction/' + id).subscribe(data => {
-      this.transaction = data;
-      this.transaction.date = new Date(this.transaction.date);
-    });
-  }
-
-  updateBook(id) {
-    this.http.put('/api/transaction/' + id, this.transaction)
-      .subscribe(res => {
-          const id = res['_id'];
-          this.router.navigate(['/transaction-details', id]);
-        }, (err) => {
-          console.log(err);
-        }
-      );
+    this.transactionService.getTransactionDetails(id)
+      .subscribe(
+        (transaction: Transaction) => {
+          this.transaction = transaction;
+        },
+        err => console.log('Error', err));
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.transaction.date = event.value;
   }
 
+  onSubmit() {
+    this.transactionService.updateTransaction(this.transaction)
+      .subscribe((transaction: Transaction) => {
+          this.router.navigate(['/wallet', transaction.walletId]);
+        },
+        err => console.log('Error', err));
+  }
+
+  deleteTransaction(id) {
+    this.transactionService.deleteTransaction(id)
+      .subscribe(res => {
+          this.router.navigate(['wallet', this.transaction.walletId]);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+  }
 }
