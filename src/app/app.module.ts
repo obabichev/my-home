@@ -12,7 +12,8 @@ import {TransactionEditComponent} from './components/transaction/transaction-edi
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule,
-  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatDialogModule, MatToolbarModule
+  MatSelectModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatDialogModule, MatToolbarModule,
+  MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE
 } from '@angular/material';
 import {WalletService} from './service/wallet.service';
 
@@ -35,7 +36,19 @@ import {ProfileComponent} from './components/auth/profile/profile.component';
 import {AuthGuardService} from './service/auth-guard.service';
 import {RestService} from './service/rest.service';
 import {AllTransactionsTableComponent} from './components/transaction/all-transactions-table/all-transactions-table.component';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
 
+export const DATE_FORMAT = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 const appRoutes: Routes = [
   {
@@ -135,7 +148,9 @@ const appRoutes: Routes = [
     TransactionTypesService,
     AuthenticationService,
     AuthGuardService,
-    RestService
+    RestService,
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT}
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]
