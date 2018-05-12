@@ -8,9 +8,13 @@ const authValidator = require('../authValidator');
 const TransactionController = require('../controllers/TransactionController');
 
 /* GET ALL TRANSACTIONS */
-router.get('/', function (req, res, next) {
+router.get('/', authValidator, function (req, res, next) {
+  const userId = req.payload._id;
   Transaction.find()
-    .then(transactions => res.json(transactions))
+    .where('userId').equals(userId)
+    .then(transactions => {
+      res.json(transactions);
+    })
     .catch(err => next(err));
 });
 
@@ -24,6 +28,8 @@ router.get('/:id', authValidator, function (req, res, next) {
 
 /* SAVE TRANSACTION */
 router.post('/', authValidator, function (req, res, next) {
+  const userId = req.payload._id;
+  req.body.userId = userId;
   return TransactionController.createTransaction(req.body)
     .then(transaction => res.json(transaction))
     .catch(err => next(err));
