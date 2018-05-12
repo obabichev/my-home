@@ -1,5 +1,7 @@
 <div>
-  <a mat-fab color="primary" [routerLink]="['/wallet-create']">Add</a>
+  <p></p>
+  <a mat-raised-button color="primary" [routerLink]="['/wallet-create']">Create wallet</a>
+  <a mat-raised-button color="primary" [routerLink]="['/transaction-create']">Create transaction</a>
 </div>
 
 <mat-card *ngFor="let wallet of wallets"
