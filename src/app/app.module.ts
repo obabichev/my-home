@@ -41,27 +41,33 @@ const appRoutes: Routes = [
   {
     path: 'transactions',
     component: TransactionComponent,
-    data: {title: 'Transactions list'}
+    data: {title: 'Transactions list'},
+    canActivate: [AuthGuardService]
   },
   {
     path: 'transaction-create',
-    component: TransactionCreateComponent
+    component: TransactionCreateComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'transaction-edit/:id',
-    component: TransactionEditComponent
+    component: TransactionEditComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'wallets',
-    component: WalletCardsComponent
+    component: WalletCardsComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'wallet/:id',
-    component: WalletComponent
+    component: WalletComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'wallet-create',
-    component: WalletCreateComponent
+    component: WalletCreateComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'register',
