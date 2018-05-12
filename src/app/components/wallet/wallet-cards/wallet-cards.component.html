@@ -1,3 +1,7 @@
+<div>
+  <a mat-fab color="primary" [routerLink]="['/wallet-create']">Add</a>
+</div>
+
 <mat-card *ngFor="let wallet of wallets"
           class="example-card wallet-card">
   <mat-card-header>
@@ -18,7 +22,7 @@
   </mat-card-actions>
 </mat-card>
 
-<div>
-  <a mat-fab color="primary" [routerLink]="['/wallet-create']">Add</a>
-</div>
+<app-all-transactions-table [transactions]="transactions"
+                            [wallets]="wallets">
 
+</app-all-transactions-table>

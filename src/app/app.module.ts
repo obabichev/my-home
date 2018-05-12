@@ -34,6 +34,7 @@ import {LoginComponent} from './components/auth/login/login.component';
 import {ProfileComponent} from './components/auth/profile/profile.component';
 import {AuthGuardService} from './service/auth-guard.service';
 import {RestService} from './service/rest.service';
+import {AllTransactionsTableComponent} from './components/transaction/all-transactions-table/all-transactions-table.component';
 
 
 const appRoutes: Routes = [
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     WalletDeleteDialogComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    AllTransactionsTableComponent
   ],
   imports: [
     BrowserModule,

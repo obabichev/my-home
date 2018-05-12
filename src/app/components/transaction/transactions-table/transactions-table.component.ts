@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Transaction} from '../../../model/transaction';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {transactionDateComparator} from '../../../utils/comparators/transactionDateComparator';
 
 @Component({
   selector: 'app-transactions-table',
@@ -17,7 +18,7 @@ export class TransactionsTableComponent implements OnInit {
 
   @Input()
   set transactions(transactions: Transaction[]) {
-    this.dataSource = new MatTableDataSource<Transaction>(transactions);
+    this.dataSource = new MatTableDataSource<Transaction>(transactions.sort(transactionDateComparator));
     this.dataSource.paginator = this.paginator;
   }
 
