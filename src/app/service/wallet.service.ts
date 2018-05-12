@@ -29,6 +29,11 @@ export class WalletService {
       .map((createdWallet: any) => new Wallet(createdWallet));
   }
 
+  public updateWallet(wallet: Wallet): Observable<Wallet> {
+    return this.rest.rput(`${WALLET_URL}/${wallet._id}`, wallet)
+      .map((createdWallet: any) => new Wallet(createdWallet));
+  }
+
   public deleteWallet(id: string) {
     return this.rest.rdelete(`${WALLET_URL}/${id}`);
   }

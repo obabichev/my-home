@@ -1,5 +1,27 @@
 <mat-card *ngIf="wallet">
-  <mat-card-header>{{wallet.name}} {{wallet.total}} {{wallet.currency.value}}</mat-card-header>
+  <mat-card-header *ngIf="!editMode">
+    <p>
+      {{wallet.name}} {{wallet.total}} {{wallet.currency.value}}
+      <button mat-button color="primary" (click)="onChangeEditMode(true)">Edit</button>
+    </p>
+  </mat-card-header>
+  <mat-card-header *ngIf="editMode">
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Name"
+               name="name" [(ngModel)]="wallet.name"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Total"
+               name="total" [(ngModel)]="wallet.total"
+               type="number"
+               required>
+      </mat-form-field>
+      {{wallet.currency.value}}
+      <button mat-button color="primary" (click)="saveWalletChanges()">Save</button>
+    </form>
+  </mat-card-header>
 </mat-card>
 <app-transactions-table [transactions]="transactions"></app-transactions-table>
 <a [routerLink]="['/transaction-create', {walletId: walletId}]" class="btn btn-default btn-lg">

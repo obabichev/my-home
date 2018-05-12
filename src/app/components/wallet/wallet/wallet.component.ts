@@ -16,6 +16,7 @@ export class WalletComponent implements OnInit {
   transactions: Transaction[] = [];
   wallet: Wallet = null;
   walletId: string;
+  editMode = false;
 
   constructor(private route: ActivatedRoute,
               private transactionService: TransactionService,
@@ -42,5 +43,17 @@ export class WalletComponent implements OnInit {
   getWallet(walletId: string) {
     this.walletService.getWalletById(walletId)
       .subscribe((wallet: Wallet) => this.wallet = wallet);
+  }
+
+  onChangeEditMode(value: boolean) {
+    this.editMode = value;
+  }
+
+  saveWalletChanges() {
+    this.walletService.updateWallet(this.wallet)
+      .subscribe(wallet => {
+        this.wallet = wallet;
+        this.onChangeEditMode(false);
+      });
   }
 }
