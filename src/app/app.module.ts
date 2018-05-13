@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -37,6 +37,9 @@ import {AuthGuardService} from './service/auth-guard.service';
 import {RestService} from './service/rest.service';
 import {AllTransactionsTableComponent} from './components/transaction/all-transactions-table/all-transactions-table.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {GlobalErrorHandlerService} from './service/global-error-handler.service';
+import {ErrorMessageComponent} from './components/error/error-message/error-message.component';
+import {ErrorHandlerService} from './service/error-handler.service';
 
 export const DATE_FORMAT = {
   parse: {
@@ -116,7 +119,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    AllTransactionsTableComponent
+    AllTransactionsTableComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +154,9 @@ const appRoutes: Routes = [
     AuthGuardService,
     RestService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT}
+    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT},
+    {provide: ErrorHandler, useClass: GlobalErrorHandlerService},
+    ErrorHandlerService
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]

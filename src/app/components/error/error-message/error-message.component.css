@@ -1,0 +1,12 @@
+.error-message-container {
+  background-color: rgb(244, 67, 54);
+  color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.close-button {
+  height: 1px;
+  align-self: flex-end;
+}

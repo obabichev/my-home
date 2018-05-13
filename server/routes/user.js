@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.js');
 
+const UserController = require('../controllers/UserController');
 
 router.get('/', function (req, res, next) {
   User.find(function (err, transactions) {
@@ -18,17 +19,14 @@ router.post('/', function (req, res, next) {
 
   user.setPassword(req.body.password);
 
-  user.save(function (err) {
-    if (err) {
-      return next(err);
-    }
-    let token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token": token
+  return UserController.registerUser(req.body)
+    .then(result => {
+      res.status(200);
+      res.json(result);
+    })
+    .catch(error => {
+      next(error);
     });
-  });
 });
 
 module.exports = router;
