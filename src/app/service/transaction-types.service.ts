@@ -12,6 +12,8 @@ export class TransactionTypesService {
     'Life & Entertainment',
     'Communication, PC',
     'Income',
+    'Study',
+    'Private tutor',
     'Other'
   ];
 
