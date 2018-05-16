@@ -1,6 +1,7 @@
-<app-transactions-line-chart-2 *ngIf="transactions.length > 0" [transactions]="transactions"></app-transactions-line-chart-2>
-
-  <!--<app-transaction-line-chart></app-transaction-line-chart>-->
+<app-transaction-line-chart *ngIf="transactions.length > 0"
+                            [transactions]="transactions"
+                            [wallet]="wallet">
+</app-transaction-line-chart>
 
 <mat-card *ngIf="wallet">
   <mat-card-header *ngIf="!editMode">

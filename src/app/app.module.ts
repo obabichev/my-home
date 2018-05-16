@@ -40,7 +40,6 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {ErrorMessageComponent} from './components/error/error-message/error-message.component';
 import {ErrorHandlerService} from './service/error-handler.service';
 import {TransactionLineChartComponent} from './components/charts/transaction-line-chart/transaction-line-chart.component';
-import { TransactionsLineChart2Component } from './components/charts/transactions-line-chart-2/transactions-line-chart-2.component';
 
 export const DATE_FORMAT = {
   parse: {
@@ -122,8 +121,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     AllTransactionsTableComponent,
     ErrorMessageComponent,
-    TransactionLineChartComponent,
-    TransactionsLineChart2Component
+    TransactionLineChartComponent
   ],
   imports: [
     BrowserModule,

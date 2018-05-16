@@ -4,7 +4,7 @@ export class Wallet {
   public _id: string;
   public name: string;
   public currency: Classifier;
-  public total: Number;
+  public total: number;
   public description?: string;
 
   constructor(values: any = {}) {
