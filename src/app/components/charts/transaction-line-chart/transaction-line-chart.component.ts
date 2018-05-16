@@ -147,7 +147,12 @@ export class TransactionLineChartComponent implements OnInit, AfterContentInit {
       const i = bisectDate(transactioPoints, current, 1);
       const left = transactioPoints[i - 1];
       const right = transactioPoints[i];
-      const d = 2 * x(current) < x(right.date) + x(left.date) ? left : right;
+      let d;
+      if (left && right) {
+        d = 2 * x(current) < x(right.date) + x(left.date) ? left : right;
+      } else {
+        d = left || right;
+      }
 
       if (d.transaction) {
         let x0 = x(d.date);
