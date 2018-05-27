@@ -1,8 +1,3 @@
-<app-transaction-line-chart *ngIf="transactions.length > 0"
-                            [transactions]="transactions"
-                            [wallet]="wallet">
-</app-transaction-line-chart>
-
 <mat-card *ngIf="wallet">
   <mat-card-header *ngIf="!editMode">
     <p>
@@ -28,6 +23,12 @@
     </form>
   </mat-card-header>
 </mat-card>
+
+<app-transaction-line-chart *ngIf="transactions.length > 0"
+                            [transactions]="transactions"
+                            [wallet]="wallet">
+</app-transaction-line-chart>
+
 <app-transactions-table [transactions]="transactions"></app-transactions-table>
 <a [routerLink]="['/transaction-create', {walletId: walletId}]" class="btn btn-default btn-lg">
   <button mat-raised-button color="primary">Create transaction</button>
