@@ -41,7 +41,7 @@ import {ErrorMessageComponent} from './components/error/error-message/error-mess
 import {ErrorHandlerService} from './service/error-handler.service';
 import {TransactionLineChartComponent} from './components/charts/transaction-line-chart/transaction-line-chart.component';
 import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
-import {ROOT_REDUCER_INITIAL_STATE, rootReducer} from './state/store';
+import {AppState, ROOT_REDUCER_INITIAL_STATE, rootReducer} from './state/store';
 
 export const DATE_FORMAT = {
   parse: {
@@ -165,7 +165,7 @@ const appRoutes: Routes = [
   entryComponents: [WalletDeleteDialogComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<any>,
+  constructor(ngRedux: NgRedux<AppState>,
               devTools: DevToolsExtension) {
 
     const storeEnhancers = devTools.isEnabled() ?
