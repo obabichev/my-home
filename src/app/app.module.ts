@@ -40,6 +40,8 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {ErrorMessageComponent} from './components/error/error-message/error-message.component';
 import {ErrorHandlerService} from './service/error-handler.service';
 import {TransactionLineChartComponent} from './components/charts/transaction-line-chart/transaction-line-chart.component';
+import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
+import {ROOT_REDUCER_INITIAL_STATE, rootReducer} from './state/store';
 
 export const DATE_FORMAT = {
   parse: {
@@ -144,7 +146,8 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatGridListModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    NgReduxModule
   ],
   providers: [
     WalletService,
@@ -156,10 +159,23 @@ const appRoutes: Routes = [
     RestService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT},
-    ErrorHandlerService
+    ErrorHandlerService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [WalletDeleteDialogComponent]
 })
 export class AppModule {
+  constructor(ngRedux: NgRedux<any>,
+              devTools: DevToolsExtension) {
+
+    const storeEnhancers = devTools.isEnabled() ?
+      [devTools.enhancer()] :
+      [];
+
+    ngRedux.configureStore(
+      rootReducer,
+      ROOT_REDUCER_INITIAL_STATE,
+      [],
+      storeEnhancers);
+  }
 }
